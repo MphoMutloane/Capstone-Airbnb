@@ -1,22 +1,68 @@
-// server.js
-const express = require('express');
-const mongoose = require('mongoose');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const { getEnvironmentVariables } = require("./src/environments/environment");
+const userRoutes = require("./src/routes/userRoutes");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-const app = express();
-const PORT = process.env.PORT || 5000;
 
-// Middleware to parse JSON
-app.use(express.json());
+class Server {
+    constructor() {
+        this.app = express(); 
+        this.setConfigs();
+        this.setRoutes();
+        this.error404Handler();
+        this.handleErrors();
+    }
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.error("MongoDB connection error:", err));
+    setConfigs() {
+        this.connectMongoDB();
+        this.allowCors();
+        this.configureBodyParser();
+    }
 
-// Routes
-app.use('/api/accommodations', require('./routes/accommodationRoutes'));
-app.use('/api/reservations', require('./routes/reservationRoutes'));
-app.use('/api/users', require('./routes/userRoutes'));
+    connectMongoDB() {
+        const dbUri = getEnvironmentVariables().db_uri; // Get the MongoDB URI
+        console.log("Connecting to MongoDB with URI:", dbUri);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+        mongoose.connect(dbUri)
+            .then(() => console.log("MongoDB connected"))
+            .catch((err) => console.error("MongoDB connection error:", err));
+    }
+
+    allowCors() {
+        this.app.use(cors());
+    }
+
+    configureBodyParser() {
+        this.app.use(bodyParser.urlencoded({
+            extended: true
+        }));
+        // this.app.use(bodyParser.json());
+    }
+
+    setRoutes() {
+        this.app.use("/api/user", userRoutes);
+    }
+
+    error404Handler() {
+        this.app.use((req, res) => {
+            res.status(404).json({
+                message: "Not found",
+                staus_code: 404
+            });
+        });
+    }
+
+    handleErrors() {
+        this.app.use((error, req, res, next) => {
+            const errorStatus = req.errorStatus || 500;
+            res.status(errorStatus).json({
+                message: error.message || "Something went wrong. Please try again.",
+                staus_code: errorStatus
+            });
+        });
+    }
+}
+
+module.exports = Server;
