@@ -4,7 +4,7 @@ const userValidators = require("../validators/userValidators");
 const GlobalMiddleware = require("../middleware/GlobalMiddleware");
 const AuthMiddleware = require("../middleware/auth"); 
 
-class UserRoutes {
+class bannerRoutes {
     constructor() {
         this.router = Router();
         this.getRoutes();
@@ -27,7 +27,8 @@ class UserRoutes {
 
     postRoutes() {
         this.router.post(
-            "/login",
+            "/add/banner",
+            AuthMiddleware,
             userValidators.login(),
             GlobalMiddleware.checkError,
             userController.login
@@ -41,7 +42,7 @@ class UserRoutes {
     }
 }
 
-module.exports = new UserRoutes().router;
+module.exports = new bannerRoutes().router;
 
 
 

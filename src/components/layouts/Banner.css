@@ -1,0 +1,62 @@
+.banner{
+    background-color: black;
+    color: white;
+    height: 977px;
+}
+
+.banner_search {
+    display: flex;
+    background-color: white;
+    color: black;
+    width: 730px;
+    height: 50px;
+    border-radius: 1000px;
+    padding: 8px 8px 8px 8px;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 360px;
+}
+
+.banner_search p {
+    color: gray;
+}
+
+.banner_search span {
+    font-size: 20px;
+    margin: 0 8px;
+    color: gray;
+}
+
+.banner_search .expandMoreIcon {
+    color: gray;
+}
+
+.dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    width: 150px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.dropdown p {
+    margin: 0;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdown p:hover {
+    background-color: #f0f0f0;
+}
+
+.search_icon_div {
+    background-color: #ff385c;
+    color: white;
+    border-radius: 80%;
+    padding: 10px;
+}

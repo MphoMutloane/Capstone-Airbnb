@@ -1,0 +1,71 @@
+.header {
+    color: white;
+    display: flex;
+    position: sticky;
+    top: 0;
+    background: #000000;
+    z-index: 100;
+    width: 100%;
+}
+
+.header_logo {
+    object-fit: contain;
+    height: 100px;
+    margin-left: 30px;
+    margin-right: 180px;
+}
+
+
+.header_center {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    gap: 40px; /* Spacing between items */
+    margin-left: 180px;
+    /* margin-right: 180px; */
+    width: 408px;
+}
+
+.header_center p {
+    position: relative;
+    font-size: 16px; /* Adjust font size */
+    cursor: pointer; /* Show pointer cursor on hover */
+    padding-bottom: 5px; /* Add space for underline */
+}
+
+.header_center p:hover::after {
+    content: ""; /* Creates the underline */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; /* Full width underline */
+    height: 2px; /* Thickness of the underline */
+    background-color: #ff385c; /* Active color (adjust as needed) */
+    transition: width 0.3s ease-in-out;
+}
+
+
+.header_right {
+    display: flex;
+    cursor: pointer;
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Center horizontally */
+    margin-left: 300px; /* Push to the far right */
+    gap: 12px; /* Add spacing between elements */
+    width: 15vw; /* Adjust width as needed */
+    padding: 10px;
+}
+
+.header_right a {
+    text-decoration: none; 
+}
+
+.becomeHost {
+    margin: 0;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+
