@@ -10,21 +10,20 @@ class userController {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { name, phone, email, password, type, status } = req.body;
+        const { username, password, role } = req.body;
 
         try {
             const hash = await Utils.encryptPassword(password);
 
-            const data = { name, phone, email, password: hash, type, status };
+            const data = { username, password: hash, role };
 
             // Create the user in the database
             let user = await new User(data).save();
 
             // Generate the JWT token after creating the user
             const payload = {
-                user_id: user._id,
-                email: user.email,
-                type: user.type,
+                username_id: username._id,
+                role: user.role,
             };
 
             const token = Jwt.jwtSign(payload);
@@ -32,7 +31,7 @@ class userController {
             // Send the response
             res.status(201).json({
                 token: token,
-                user: user,
+                username: username,
             });
         } catch (e) {
             next(e);
@@ -40,7 +39,7 @@ class userController {
     }
 
     static async login(req, res, next) {
-        const user = req.user;
+        const username = req.username;
         const password  = req.body.password;
 
         const data = {
@@ -51,16 +50,15 @@ class userController {
         try{
            await Utils.comparePassword(data);
            const payload = {
-            user_id: user._id,
-            email: user.email,
-            type: user.type,
+            username_id: username._id,
+            role: username.role,
         };
 
         const token = Jwt.jwtSign(payload);
 
-        res.status(201).json({
+        res.status(200).json({
             token: token,
-            user: user,
+            username: username,
         });
     
         } catch(e) {
@@ -69,20 +67,16 @@ class userController {
     }
 
     static async profile(req, res, next) {
-        const user = req.user;
-       
-        try{
-           const profile = await User.findById(user._id);
-           if(profile) {
-            res.send(profile);
-           } else {
-            throw new Error("User does not exist");
-           }
-        } catch(e) {
+        try {
+            const username = req.username;
+            if (!username) {
+                throw new Error("Username not found");
+            }
+            res.json(username);
+        } catch (e) {
             next(e);
         }
-    }
-
+    } 
 
 }
 

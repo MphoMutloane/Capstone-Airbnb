@@ -1,0 +1,64 @@
+.future_getaways h1 {
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+.future_getaways_top {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center the items */
+    gap: 40px; /* Space between items */
+    padding: 0px 30px; /* 10px top/bottom, 30px left/right */
+}
+
+.future_getaways_top h5 {
+    text-decoration: underline; /* Underlines the h5 text */
+    margin: 0; /* Removes default margin */
+    font-size: 16px; /* Adjust as needed */
+    white-space: nowrap; /* Prevents text from wrapping */
+    cursor: pointer; /* Indicates interactivity */
+}
+
+.future_getaways_top p {
+    margin: 0; /* Removes default margin */
+    font-size: 16px; /* Adjust as needed */
+    white-space: nowrap; /* Prevents text from wrapping */
+    cursor: pointer; /* Indicates interactivity */
+    color: gray;
+}
+
+.future_getaways_top h5 {
+    text-decoration: underline; /* Underlines text on hover */
+    text-underline-offset: 15px; /* Adjust the spacing between the underline and text */
+    margin-left: 10px;
+}
+
+
+.future_getaways_info{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal-width columns */
+    gap: 40px; /* Adds spacing between columns */
+    padding: 40px; /* Adds padding around the whole container */
+}
+
+.future_getaways_info div {
+    display: flex;
+    flex-direction: column; /* Stacks the content vertically */
+}
+
+.future_getaways_info h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px; /* Adds space below headings */
+}
+
+.future_getaways_info p {
+    font-size: 16px;
+    cursor: pointer; /* Adds interactivity for hover effects */
+    color: gray;
+    margin-bottom: 15px; /* Adds space below headings */
+}
+
+.future_getaways_info h4 {
+    text-decoration: underline; /* Underlines text on hover */
+    font-size: 18px;
+}

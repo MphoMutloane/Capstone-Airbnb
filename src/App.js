@@ -1,33 +1,30 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './components/admin/userContext'; // Import UserProvider
 import Home from './components/Home';
-import Header from './components/layouts/Header';
 import LocationPage from './components/LocationPage';
 import LocationDetails from './components/LocationDetails';
 import Login from './components/Login';
+import ViewListings from './components/admin/ViewListings';
+import Footer from './components/layouts/Footer';
 
 const App = () => {
   return (
-    <Router>
-      <div className="app">
-        <Header />
-        <Routes>
-          {/* Home Page */}
-          <Route path="/" element={<Home />} />
-
-          {/* Login Page */}
-          <Route path="/login" element={<Login />} />
-
-          {/* Location Page */}
-          <Route path="/locations" element={<LocationPage />} />
-
-          {/* Dynamic Location Details Page */}
-          <Route path="/locations/:locationId" element={<LocationDetails />} />
-        </Routes>
-      </div>
-    </Router>
+    <UserProvider>
+      <Router>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin/view-listings" element={<ViewListings />} />
+            <Route path="/locations" element={<LocationPage />} />
+            <Route path="/locations/:locationId" element={<LocationDetails />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </UserProvider>
   );
-}
+};
 
 export default App;
-

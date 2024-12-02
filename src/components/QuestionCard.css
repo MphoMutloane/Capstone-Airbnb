@@ -1,0 +1,50 @@
+.question_card {
+    margin: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%; 
+    height: 100vh; 
+    position: relative;
+}
+
+.question_card_info {
+    position: absolute;
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.question_card_info h2 {
+    font-size: 65px;
+    font-weight: 600;
+    margin-top: 80px;
+    margin-bottom: 125px;
+}
+
+.question_card_info button {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.question_card_image {
+    width: 95vw;/* Subtract 40px (20px on each side) for spacing */
+    height: 100%;
+    background-size: cover; /* Ensures the image fills the width while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    position: absolute;
+    z-index: 0;
+    border-radius: 5px;
+}
+

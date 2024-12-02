@@ -1,15 +1,12 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const userSchema = new mongoose.Schema({
-    email: { type: String, required: true },
-    phone: { type: String, required: true },
+const userSchema = mongoose.Schema({
+    username: { type: String, required: true },
     password: { type: String, required: true },
-    name: { type: String, required: true },
-    type: { type: String, required: true },
-    status: { type: String, required: true },
-    created_at: { type: Date, required: true, default: new Date() },
-    updated_at: { type: Date, required: true, default: new Date() },
+    role: { type: String, enum: ['user', 'host'], default: 'user' },
 });
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model('User', userSchema);
+
 

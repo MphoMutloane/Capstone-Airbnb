@@ -1,0 +1,39 @@
+.admin_header {
+    color: black;
+    display: flex;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+    width: 100vw;
+}
+
+.admin_header_logo {
+    object-fit: contain;
+    height: 100px;
+    margin-left: 30px;
+    margin-right: 180px;
+}
+
+.admin_header_right {
+    display: flex;
+    cursor: pointer;
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Center horizontally */
+    margin-left: 780px; /* Push to the far right */
+    gap: 30px; /* Add spacing between elements */
+    width: 15vw; /* Adjust width as needed */
+    padding: 10px;
+}
+
+.admin_header_right a {
+    text-decoration: none; 
+}
+
+.admin_become_host {
+    margin: 0;
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    width: 180px;
+}

@@ -1,0 +1,55 @@
+.discover_card {
+    margin: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 100ms ease-in;
+    cursor: pointer;
+    width: 700px; 
+    height: 600px; 
+    position: relative;
+}
+
+.discover_card:hover {
+    transform: scale(1.07);
+}
+
+.discover_card_info {
+    position: absolute;
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.discover_card_info h2 {
+    font-size: 45px;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 35px;
+}
+
+.discover_card_info button {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.discover_card_image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}

@@ -1,0 +1,70 @@
+.inspiration_title, .discover_title {
+    padding-top: 40px;
+    margin-left: 40px;
+}
+
+.inspiration_cards, .discover_cards {
+    display: flex;
+    padding: 10px 30px;
+}
+
+
+.questions {
+    position: relative;
+    background-image: url('../../assets/images/Ask_host.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 300px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Text color for better contrast */
+}
+
+.questions h1 {
+    margin: 0;
+    font-size: 2.5rem; /* Adjust size as needed */
+    text-align: center;
+}
+
+.questions_button {
+    position: absolute;
+    bottom: 20px; /* Adjust spacing as needed */
+    background-color: white;
+    color: black;
+    border: 1px solid pink;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.shop {
+    display: flex;
+    flex-direction: row; /* Arrange items in a column */
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* Add spacing between the columns */
+}
+
+.shop_cards img {
+    height: 280px; /* Set smaller height */
+    width: 1000px; /* Set smaller width */
+}
+
+.gift_cards h1{
+    font-size: 50px;
+    font-weight: 400;
+    margin-left: 50px;
+    margin-bottom: 40px;
+}
+
+.shop button {
+    background-color: black;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 50px;
+}
+

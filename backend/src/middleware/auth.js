@@ -5,7 +5,7 @@ const AuthMiddleware = (req, res, next) => {
         // Extract the token from the Authorization header
         const token = req.header("Authorization")?.replace("Bearer ", "");
         if (!token) {
-            return res.status(401).json({ message: "Access Denied" });
+            return res.status(401).json({ message: "Access Denied: No token provided"  });
         }
 
         // Verify the token
@@ -14,7 +14,7 @@ const AuthMiddleware = (req, res, next) => {
 
         next(); // Proceed to the next middleware or controller
     } catch (error) {
-        return res.status(400).json({ message: "Invalid Token" });
+        return res.status(400).json({ message: "Invalid or expired token" });
     }
 };
 

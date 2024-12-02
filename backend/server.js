@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { getEnvironmentVariables } = require('./src/environments/environment');
+require('dotenv').config();
 const userRoutes = require('./src/routes/userRoutes');
+const accommodationRoutes = require('./src/routes/accomodationRoutes');
+const reservationRoutes = require('./src/routes/reservationRoutes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const bannerRoutes = require('./src/routes/bannerRoutes');
-require('dotenv').config(); 
 
 class Server {
     constructor() {
@@ -23,18 +23,13 @@ class Server {
     }
 
     connectMongoDB() {
-        const dbUri = getEnvironmentVariables().db_uri; // Get the MongoDB URI
-        console.log('Connecting to MongoDB with URI:', dbUri);
-        console.log('Environment:', process.env.NODE_ENV);
-
-
-        mongoose.connect(dbUri)
+        const dbUri = process.env.MONGO_URI; // Using dotenv directly
+        mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
             .then(() => console.log("MongoDB connected"))
-            .catch((err) => {
+            .catch(err => {
                 console.error("MongoDB connection error:", err);
-                process.exit(1); 
-        });
-        
+                process.exit(1); // Exit if the connection fails
+            });
     }
 
     allowCors() {
@@ -47,9 +42,9 @@ class Server {
     }
 
     setRoutes() {
-        this.app.use('/src/uploads', express.static("src/uploads"));
-        this.app.use('/api/user', userRoutes);
-        this.app.use('/api/banner', bannerRoutes);
+        this.app.use('/api/users', userRoutes);
+        this.app.use('/api/accommodations', accommodationRoutes);
+        this.app.use('/api/reservations', reservationRoutes);
     }
 
     error404Handler() {
@@ -63,20 +58,26 @@ class Server {
 
     handleErrors() {
         this.app.use((error, req, res, next) => {
-            console.error(error); // Log error details
-            const errorStatus = req.errorStatus || 500;
+            console.error(error);
+            const errorStatus = error.status || 500;
             res.status(errorStatus).json({
                 message: error.message || 'Something went wrong. Please try again.',
                 status_code: errorStatus
             });
         });
     }
+
+    start() {
+        const port = process.env.PORT || 5000;
+        this.app.listen(port, () => {
+            console.log(`Server is running on port ${port}`);
+        });
+    }
 }
 
+// Instantiate and start the server
 const server = new Server();
-const port = process.env.PORT || 5000;
+server.start();
 
-server.app.listen(port, () => {
-    console.log(`Server is running at port ${port}`);
-});
+
 
