@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './components/admin/userContext'; // Import UserProvider
 import Home from './components/Home';
-import LocationPage from './components/LocationPage';
+import Locations from './components/Locations';
 import LocationDetails from './components/LocationDetails';
 import Login from './components/Login';
 import ViewListings from './components/admin/ViewListings';
@@ -17,8 +17,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin/view-listings" element={<ViewListings />} />
-            <Route path="/locations" element={<LocationPage />} />
-            <Route path="/locations/:locationId" element={<LocationDetails />} />
+            <Route path="/locations/:locationId" element={<Locations />} />
+            <Route path="/location-details/:locationTitle" element={<LocationDetails />} />
           </Routes>
           <Footer />
         </div>

@@ -24,10 +24,11 @@ const Banner = () => {
     };
 
     const handleLocationSelect = (location) => {
-        navigate(`/locations/${location}`, {
+        navigate(`/locations/${location.replace(" ", "-").toLowerCase()}`, {
             state: { checkInDate, checkOutDate, adults, children },
         });
     };
+    
 
     return (
         <div className="banner">
